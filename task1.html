@@ -29,7 +29,7 @@
             background-color: var(--light);
         }
         
-        /* Navigation */
+        
         nav {
             display: flex;
             justify-content: space-between;
@@ -101,7 +101,7 @@
             color: var(--accent);
         }
         
-        /* Hero Section */
+       
         .hero {
             height: 100vh;
             display: flex;
@@ -162,7 +162,7 @@
             animation: floatAnimation 3s ease-in-out infinite alternate;
         }
         
-        /* Features Section */
+        
         .features {
             padding: 6rem 5%;
             text-align: center;
@@ -225,7 +225,7 @@
             line-height: 1.6;
         }
         
-        /* Portfolio Section */
+        
         .portfolio {
             padding: 6rem 5%;
             text-align: center;
@@ -285,7 +285,7 @@
             padding: 0 2rem;
         }
         
-        /* Testimonials Section */
+        
         .testimonials {
             padding: 6rem 5%;
             text-align: center;
@@ -341,7 +341,7 @@
             color: #777;
         }
         
-        /* Contact Section */
+        
         .contact {
             padding: 6rem 5%;
             text-align: center;
@@ -437,7 +437,7 @@
             color: var(--primary);
         }
         
-        /* Footer */
+       
         footer {
             background-color: var(--dark);
             color: white;
@@ -521,7 +521,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* Animations */
+       
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -553,7 +553,7 @@
             transform: translateY(0);
         }
         
-        /* Responsive Design */
+        
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -591,7 +591,7 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    
     <nav>
         <div class="logo">Creative<span>Code</span></div>
         <div class="nav-links">
@@ -604,7 +604,7 @@
         <a href="#contact" class="cta-btn">Get Started</a>
     </nav>
     
-    <!-- Hero Section -->
+   
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Transform Your Ideas Into <span>Digital Reality</span></h1>
@@ -617,7 +617,6 @@
         <img src="download.jpg" alt="Hero Image" class="hero-image">
     </section>
     
-    <!-- Features Section -->
     <section id="features" class="features">
         <h2 class="section-title">Why Choose Us</h2>
         <div class="features-container">
@@ -639,7 +638,7 @@
         </div>
     </section>
     
-    <!-- Portfolio Section -->
+    
     <section id="portfolio" class="portfolio">
         <h2 class="section-title">Our Latest Work</h2>
         <div class="portfolio-container">
@@ -667,7 +666,7 @@
         </div>
     </section>
     
-    <!-- Testimonials Section -->
+    
     <section id="testimonials" class="testimonials">
         <h2 class="section-title">What Clients Say</h2>
         <div class="testimonials-container">
@@ -692,7 +691,7 @@
         </div>
     </section>
     
-    <!-- Contact Section -->
+    
     <section id="contact" class="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-container">
@@ -740,7 +739,7 @@
         </div>
     </section>
     
-    <!-- Footer -->
+ 
     <footer>
         <div class="footer-container">
             <div class="footer-col">
@@ -786,9 +785,9 @@
     </footer>
     
     <script>
-        // Scroll Animation
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // Navbar scroll effect
+            
             const navbar = document.querySelector('nav');
             window.addEventListener('scroll', function() {
                 if (window.scrollY > 50) {
@@ -800,7 +799,7 @@
                 }
             });
             
-            // Scroll animations
+          
             const animateElements = document.querySelectorAll('.animate-on-scroll');
             
             function checkScroll() {
@@ -815,9 +814,9 @@
             }
             
             window.addEventListener('scroll', checkScroll);
-            checkScroll(); // Check on load
+            checkScroll(); 
             
-            // Smooth scrolling for anchor links
+            
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -835,7 +834,6 @@
                 });
             });
             
-            // Testimonials scrolling control (optional)
             const testimonialsContainer = document.querySelector('.testimonials-container');
             if (testimonialsContainer) {
                 let isDown = false;
