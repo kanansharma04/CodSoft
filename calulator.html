@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Colorful Calculator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .calculator {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 24px;
+      box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      max-width: 360px;
+      width: 100%;
+    }
+    
+    .calculator-header {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    
+    .calculator-header h1 {
+      font-size: 1.5rem;
+      color: #4c1d95;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .display {
+      width: 100%;
+      height: 80px;
+      font-size: 2.2rem;
+      text-align: right;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(to right, #e0e7ff, #ddd6fe);
+      color: #1e293b;
+      font-weight: 500;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    
+    button {
+      padding: 1.2rem;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15);
+    }
+    
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .number {
+      background: #f8fafc;
+      color: #334155;
+    }
+    
+    .operator {
+      background: #c4b5fd;
+      color: #4c1d95;
+    }
+    
+    .equal {
+      background: linear-gradient(to right, #34d399, #10b981);
+      color: white;
+      grid-column: span 2;
+    }
+    
+    .clear {
+      background: linear-gradient(to right, #f87171, #ef4444);
+      color: white;
+      grid-column: span 2;
+    }
+    
+    .decimal {
+      background: #f8fafc;
+      color: #334155;
+      font-weight: 800;
+    }
+    
+    .backspace {
+      background: #fca5a5;
+      color: #7f1d1d;
+    }
+    
+    @media (max-width: 400px) {
+      .calculator {
+        padding: 1.5rem;
+        border-radius: 20px;
+      }
+      
+      .buttons {
+        gap: 8px;
+      }
+      
+      button {
+        padding: 1rem;
+        font-size: 1.2rem;
+        border-radius: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="calculator-header">
+      <h1> Calculator</h1>
+    </div>
+    <input type="text" class="display" id="display" disabled />
+    <div class="buttons">
+      <button onclick="clearDisplay()" class="clear">C</button>
+      <button onclick="appendOperator('/')" class="operator">÷</button>
+      <button onclick="appendOperator('*')" class="operator">×</button>
+      <button onclick="appendNumber('7')" class="number">7</button>
+      <button onclick="appendNumber('8')" class="number">8</button>
+      <button onclick="appendNumber('9')" class="number">9</button>
+      <button onclick="appendOperator('-')" class="operator">−</button>
+      <button onclick="appendNumber('4')" class="number">4</button>
+      <button onclick="appendNumber('5')" class="number">5</button>
+      <button onclick="appendNumber('6')" class="number">6</button>
+      <button onclick="appendOperator('+')" class="operator">+</button>
+      <button onclick="deleteLastChar()" class="backspace">⌫</button>
+      <button onclick="appendNumber('1')" class="number">1</button>
+      <button onclick="appendNumber('2')" class="number">2</button>
+      <button onclick="appendNumber('3')" class="number">3</button>
+      <button onclick="calculate()" class="equal">=</button>
+      <button onclick="appendNumber('0')" class="number">0</button>
+      <button onclick="appendNumber('.')" class="decimal">.</button>
+    </div>
+  </div>
+  <script>
+    const display = document.getElementById('display');
+    
+    function appendNumber(num) {
+      if (display.value === 'Error') clearDisplay();
+      display.value += num;
+    }
+    
+    function appendOperator(op) {
+      if (display.value === 'Error') clearDisplay();
+      if (display.value === '') return;
+      const lastChar = display.value.slice(-1);
+      if ('+-*/'.includes(lastChar)) {
+        display.value = display.value.slice(0, -1) + op;
+      } else {
+        display.value += op;
+      }
+    }
+    
+    function clearDisplay() {
+      display.value = '';
+    }
+    
+    function deleteLastChar() {
+      if (display.value === 'Error') {
+        clearDisplay();
+      } else {
+        display.value = display.value.slice(0, -1);
+      }
+    }
+    
+    function calculate() {
+      try {
+        // Replace visual operators with JavaScript operators
+        let expression = display.value
+          .replace('×', '*')
+          .replace('÷', '/')
+          .replace('−', '-');
+        
+        display.value = eval(expression);
+        
+        // Format result if it's a decimal number
+        if (display.value.includes('.') && display.value.split('.')[1].length > 5) {
+          display.value = parseFloat(display.value).toFixed(5);
+        }
+      } catch (error) {
+        display.value = 'Error';
+      }
+    }
+    
+    // Add keyboard support
+    document.addEventListener('keydown', (event) => {
+      const key = event.key;
+      
+      if ('0123456789.'.includes(key)) {
+        appendNumber(key);
+      } else if ('+-*/'.includes(key)) {
+        appendOperator(key);
+      } else if (key === 'Enter' || key === '=') {
+        calculate();
+      } else if (key === 'Escape' || key === 'Delete') {
+        clearDisplay();
+      } else if (key === 'Backspace') {
+        deleteLastChar();
+      }
+    });
+  </script>
+</body>
+</html>
